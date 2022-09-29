@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>A-Frame: Keyboard component</title>
+	<meta name="description" content="A-Frame Examples">
+	<script src="js/aframe-master-v1.3.0.min.js"></script>
+	<script src="js/aframe-environment-component.min.js"></script>
+	<script src="js/aframe-super-keyboard.min.js"></script>
+  <script src="https://supereggbert.github.io/aframe-htmlembed-component/dist/build.js"></script>
+  <script src="https://unpkg.com/aframe-html-shader@0.2.0/dist/aframe-html-shader.min.js"></script>
+  <script type="text/javascript">
+    while(true) {
+      var _theframe = document.getElementById("url");
+      _theframe.contentWindow.location.href = _theframe.src;
+    }
+
+  </script>
+</head>
+
+<body>
+
+<!--script>
+
+AFRAME.registerComponent('keyboard-functions', {
+
+	init: function()
+	{
+		// for referencing issues
+		let self = this;
+
+		// set up event listeners
+
+		// input event triggered when user presses enter
+		this.el.addEventListener('superkeyboardinput', function(event)
+		{
+			let text = event.detail.value;
+
+			// text also accessible via: self.el.getAttribute("super-keyboard")["value"]
+
+			console.log("Input: " + text);
+
+			// clear the input bar (since keyboard is not disappearing)
+			self.el.setAttribute( "super-keyboard", "value", "" );
+
+			// change the color of the sphere
+			document.getElementById("sphere").setAttribute("color", text);
+		});
+
+		// dismiss event triggered when user closes keyboard
+		this.el.addEventListener('superkeyboarddismiss', function(event)
+		{
+			// repurpose close functionality to clear all input text without submitting
+			console.log("Input cleared.");
+			self.el.setAttribute( "super-keyboard", "value", "" );
+		});
+	},
+
+	tick: function (time, timeDelta)
+	{
+		// force keyboard to remain visible even after input or dismiss events triggered
+		if ( !this.el.object3D.visible )
+			this.el.object3D.visible = true;
+	}
+
+});
+
+</script-->
+
+<!-- https://github.com/supermedium/aframe-environment-component -->
+<a-scene environment="preset: default;">
+	<!--a-entity geometry="primitive: plane"
+          material="shader: ocean; color: blue; wave-height: 10"></a-entity-->
+
+  <a-camera wasd-controls-enabled="false"></a-camera>
+  <a-entity> <a-camera look-controls-enabled wasd-controls="enabled: false"></a-camera></a-entity>
+
+  <!-- BEGIN INPUTS/KEYBOARD -->
+  <div id="targetHTML" style="width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: -1; overflow: hidden"></div>
+  <a-entity position="0 0 -2.4" htmlembed>
+		<p style="color: white;">Ky-An Tran</p>
+
+
+	</a-entity>
+  <a-entity geometry="primitive: cylinder" material="color: gray"></a-entity>
+  <a-entity position="0 2 -1" htmlembed>
+
+  </a-entity>
+  <a-box position="0 1.7 -2.5" depth="0.001" height="2" width="4" material="shader: html; target: #htmlElement"></a-box>
+  <a-box position="0 0 -2.5" depth="0.001" height="0.2" width="4" color="#263238"></a-box>
+	<a-entity id="mouseCursor" cursor="rayOrigin: mouse"></a-entity>
+
+    <!--a-entity id="hand" laser-controls="hand: right">
+    	<a-sphere radius="0.03"></a-sphere>
+    </a-entity-->
+
+    <!--
+    	Documentation at https://github.com/supermedium/aframe-super-keyboard
+    	Changeto "hand: #hand;" for VR.
+		imagePath: directory that contains image sk-basic.png
+		multipleInputs: show keyboard stay open after input is entered? (default: false)
+    -->
+    <!--
+    <a-entity id="keyboard" super-keyboard="hand: #mouseCursor; imagePath: images/;" keyboard-functions
+    position="0 1.25 -0.5" rotation="-30 0 0"></a-entity>
+
+    <a-sphere id="sphere" radius="2" position="0 2 -8" color="gray"></a-sphere>
+  -->
+
+</a-scene>
+<div style="width: 100%; height: 100%; position: fixed; left: 22%; top: 23%; z-index: -1; overflow: hidden">
+    <div id="htmlElement" style="background: #F8F8F8; color: #333; font-size: 48px">
+
+			<embed id="url" src="https://meeting.is/2740188215?hl=en&c=qBkdnD6GoV8"
+                   width="827"
+                   height="400" />
+    </div>
+
+</div>
+</body>
+</html>
